@@ -1,6 +1,5 @@
 import React from "react";
 import { Provider } from "react-redux";
-import store from "./store";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
@@ -16,17 +15,15 @@ const Container = styled.div`
 
 function App() {
   return (
-    <Provider store={store}>
-      <div>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-        </Routes>
-        <Container>안녕하세요</Container>
-      </div>
-    </Provider>
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
+      <Container>안녕하세요</Container>
+    </div>
   );
 }
 
