@@ -1,62 +1,61 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-
-const Navbar = () => {
-  const navigate = useNavigate();
-
-  const goToLogin = () => {
-    navigate("/login");
-  };
-
-  const goToSignup = () => {
-    navigate("/signup");
-  };
-
-  return (
-    <div>
-      <Container>
-        <ButtonWrapper></ButtonWrapper>
-        <LoginButton onClick={goToSignup}>회원가입</LoginButton>
-        <LoginButton onClick={goToLogin}>로그인</LoginButton>
-      </Container>
-    </div>
-  );
-};
-
-export default Navbar;
+import rabbit_log2 from "../../img/rabbit_log2.png";
 
 const Container = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  z-index: 2;
   padding-top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80px;
-  width: 100%;
+  height: 50px;
+  margin-top: 30px;
   margin-bottom: 0;
-  border-bottom: 1px solid lightgray;
+  gap: 16px;
 `;
 
 const ButtonBase = styled.button`
+  width: 206px;
   padding: 10px;
-  margin-right: 1rem;
   font-weight: 600;
   border: none;
   cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  margin: 0;
 `;
 
-//추후 간격 조정
 const Button = styled(ButtonBase)`
-  background-color: white;
-  margin-right: 8rem;
-  font-size: 2.5rem;
+  font-size: 24px;
+  color: ${(props) => props.color || "rgba(59, 59, 59, 0.6)"};
 `;
 
 const LoginButton = styled(ButtonBase)`
-  background-color: white;
-  font-size: 30px;
-  margin-right: 5rem;
-  color: gray;
+  font-size: 24px;
+  color: #3b3b3b;
+`;
+
+const Box = styled.div`
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 206px;
+  font-weight: 600;
+  border: none;
+  margin: 0;
+  padding: 0;
+`;
+
+const Img = styled.img`
+  width: 206px;
+  height: 64px;
+  border: none;
 `;
 
 const ButtonWrapper = styled.div`
@@ -64,3 +63,34 @@ const ButtonWrapper = styled.div`
   flex-grow: 1;
   justify-content: center;
 `;
+
+const Navbar = () => {
+  const navigate = useNavigate();
+
+  const goToLogin = () => {
+    navigate("/login");
+  };
+  const goToHome = () => {
+    navigate("/home");
+  };
+  const goToMyMap = () => {
+    navigate("/map");
+  };
+  return (
+    <div>
+      <Container>
+        <Img src={rabbit_log2} alt="Rabbit Logo" />
+
+        <Box />
+        <Button color={"#3b3b3b"} onClick={goToHome}>
+          Home
+        </Button>
+        <Button>AI 스케줄</Button>
+        <Button onClick={goToMyMap}>나의 여행</Button>
+        <LoginButton onClick={goToLogin}>로그인</LoginButton>
+      </Container>
+    </div>
+  );
+};
+
+export default Navbar;

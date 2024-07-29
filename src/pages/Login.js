@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import axios from "axios";
 import { useAuth } from "../AuthContext";
+import GlobalStyle from "../GlobalStyle";
+const Container = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 화면 전체 높이를 차지하도록 설정 */
+  width: 100%; /* 화면 전체 너비를 차지하도록 설정 */
+`;
 const CustomColumn = styled.div`
   display: flex;
   flex-direction: column;
@@ -53,6 +62,7 @@ const InputForm = styled.input`
     outline: none;
   }
 `;
+
 const LoginButton = styled.button`
   width: 30%;
   display: flex;
@@ -66,7 +76,12 @@ const LoginButton = styled.button`
   cursor: ${(props) => (props.isactive ? "pointer" : "not-allowed")};
   pointer-events: ${(props) => (props.isactive ? "auto" : "none")};
 `;
-
+const Button = styled.button`
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 24px;
+  padding: 15px;
+  color: gray;
+`;
 function Login() {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
@@ -82,70 +97,108 @@ function Login() {
         formData.append("username", userId);
         formData.append("password", password);
 
-        const response = await axios.post(`LOGIN 요청 URL`, formData);
+        const response = await axios.post(
+          `https://f4c3-106-101-130-233.ngrok-free.app/login`,
+          formData
+        );
         console.log(response);
+
+        console.log(response.headers["access"]);
         login(userId);
-        if (response.data.token) {
-          console.log(response.data.token);
-          localStorage.setItem("wtw-token", response.data.token);
+        const token = response.headers["access"];
+        if (token) {
+          console.log(token);
+          localStorage.setItem("access", token);
         }
         alert("로그인 성공~.");
-        setTimeout(() => {
-          navigate("/"); // 경로 확인 필요
-        }, 1500);
+        console.log(typeof token);
+        //GET 요청 보내기
+        try {
+          const adminResponse = await axios.post(
+            "https://f4c3-106-101-130-233.ngrok-free.app/admin",
+            {}, // 빈 객체를 요청 본문으로 사용
+            {
+              headers: {
+                access: token,
+              },
+            }
+          );
+          console.log("Admin page response:", adminResponse);
+        } catch (adminError) {
+          console.error("Admin page 요청 중 오류가 발생했습니다:", adminError);
+        }
       } catch (error) {
-        console.error(error);
+        console.error("로그인 중 오류가 발생했습니다:", error);
+        alert("로그인 중 오류가 발생했습니다. 다시 시도해주세요.");
       }
+    } else {
+      alert("아이디와 비밀번호를 모두 입력해주세요.");
     }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleLogin();
+    }
+  };
+
+  const goToSignup = () => {
+    navigate("/signup");
   };
 
   return (
     <div>
-      <CustomColumn
-        width="100%"
-        justifycontent="center"
-        alignitems="center"
-        gap="2rem"
-      >
+      <GlobalStyle />
+      <Container>
         <CustomColumn
-          width="30%"
+          width="100%"
           justifycontent="center"
-          alignitems="flex-start"
-          gap="1rem"
+          alignitems="center"
+          gap="2rem"
         >
-          <CustomFont color="black" font="1rem" fontWeight="bold">
-            아이디
-          </CustomFont>
-          <InputForm
-            placeholder="아이디를 입력하세요."
-            value={userId}
-            onChange={(e) => setUserId(e.target.value)}
-          />
-        </CustomColumn>
+          <CustomColumn
+            width="30%"
+            justifycontent="center"
+            alignitems="flex-start"
+            gap="1rem"
+          >
+            <CustomFont color="black" font="1rem" fontWeight="bold">
+              아이디
+            </CustomFont>
+            <InputForm
+              placeholder="아이디를 입력하세요."
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+          </CustomColumn>
 
-        <CustomColumn
-          width="30%"
-          justifycontent="center"
-          alignitems="flex-start"
-          gap="1rem"
-        >
-          <CustomFont color="black" font="1rem" fontWeight="bold">
-            비밀번호
-          </CustomFont>
-          <InputForm
-            type="password"
-            placeholder="비밀번호를 입력하세요."
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </CustomColumn>
+          <CustomColumn
+            width="30%"
+            justifycontent="center"
+            alignitems="flex-start"
+            gap="1rem"
+          >
+            <CustomFont color="black" font="1rem" fontWeight="bold">
+              비밀번호
+            </CustomFont>
+            <InputForm
+              type="password"
+              placeholder="비밀번호를 입력하세요."
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+          </CustomColumn>
 
-        <LoginButton isactive={isFormFilled} onClick={handleLogin}>
-          <CustomFont font="1rem" color="white" fontWeight="bold">
-            로그인 하기
-          </CustomFont>
-        </LoginButton>
-      </CustomColumn>
+          <LoginButton isactive={isFormFilled} onClick={handleLogin}>
+            <CustomFont font="1rem" color="white" fontWeight="bold">
+              로그인 하기
+            </CustomFont>
+          </LoginButton>
+        </CustomColumn>
+        <Button onClick={goToSignup}>회원가입</Button>
+      </Container>
     </div>
   );
 }
