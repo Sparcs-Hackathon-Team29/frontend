@@ -31,7 +31,6 @@ function App() {
           <Route path="/map" element={<MyMap />} />
         </Routes>
       </NavermapsProvider>
-      <Container>안녕하세요</Container>
     </div>
   );
 }

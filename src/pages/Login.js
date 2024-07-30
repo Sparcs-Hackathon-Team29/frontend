@@ -82,14 +82,21 @@ const Button = styled.button`
   padding: 15px;
   color: gray;
 `;
+const LogoutButton = styled.button`
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 24px;
+  padding: 15px;
+  color: gray;
+  cursor: ${(props) => (props.isactive ? "pointer" : "not-allowed")};
+  pointer-events: ${(props) => (props.isactive ? "auto" : "none")};
+`;
 function Login() {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const isFormFilled = userId && password;
 
   const navigate = useNavigate();
-  const { login, logout } = useAuth();
-
+  const { login, logout, isLoggedIn } = useAuth();
   const handleLogin = async () => {
     if (isFormFilled) {
       try {
@@ -137,12 +144,14 @@ function Login() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("access");
-    logout();
-    alert("로그아웃 되었습니다.");
-    setTimeout(() => {
-      navigate("/"); // 메인페이지 이동
-    }, 1500);
+    if (isLoggedIn) {
+      localStorage.removeItem("access");
+      logout();
+      alert("로그아웃 되었습니다.");
+      setTimeout(() => {
+        navigate("/"); // 메인페이지 이동
+      }, 1500);
+    }
   };
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
@@ -206,7 +215,9 @@ function Login() {
           </LoginButton>
         </CustomColumn>
         <Button onClick={goToSignup}>회원가입</Button>
-        <Button onClick={handleLogout}>로그아웃</Button>
+        <LogoutButton isactive={isLoggedIn} onClick={handleLogout}>
+          로그아웃
+        </LogoutButton>
       </Container>
     </div>
   );

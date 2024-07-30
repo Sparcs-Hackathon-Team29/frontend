@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 const Container = styled.div`
   position: relative;
   display: flex;
@@ -10,6 +11,7 @@ const Container = styled.div`
   height: 100vh; /* 화면 전체 높이를 차지하도록 설정 */
   width: 100%; /* 화면 전체 너비를 차지하도록 설정 */
 `;
+
 const CustomColumn = styled.div`
   display: flex;
   flex-direction: column;
@@ -18,22 +20,6 @@ const CustomColumn = styled.div`
   gap: ${(props) => props.gap || "30px"};
   align-items: ${(props) => props.alignitems || "flex-start"};
   justify-content: ${(props) => props.justifycontent || "flex-start"};
-`;
-
-const CustomRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: ${(props) => props.width || "auto"};
-  height: ${(props) => props.height || "auto"};
-  gap: ${(props) => props.gap || "10px"};
-  align-items: ${(props) => props.alignitems || "center"};
-  justify-content: ${(props) => props.justifycontent || "center"};
-
-  padding-left: ${(props) => props.paddingLeft || 0};
-  padding-right: ${(props) => props.paddingRight || 0};
-  padding-top: ${(props) => props.paddingTop || 0};
-  padding-bottom: ${(props) => props.paddingBottom || 0};
-  padding: ${(props) => props.padding || 0};
 `;
 
 const CustomFont = styled.a`
@@ -45,16 +31,16 @@ const CustomFont = styled.a`
 const Checkbox = styled.input.attrs({ type: "checkbox" })``;
 
 const SignupButton = styled.button`
-  width: 30%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px;
+  padding: 1rem;
   color: white;
   border: none;
   border-radius: 20px;
-  background-color: ${(props) => (props.isactive ? "#3C3C3C" : "#D9D9D9")};
-  cursor: ${(props) => (props.isActive ? "pointer" : "not-allowed")};
+  background-color: ${(props) => (props.isactive ? "#585858" : "#D9D9D9")};
+  cursor: ${(props) => (props.isactive ? "pointer" : "not-allowed")};
   pointer-events: ${(props) => (props.isactive ? "auto" : "none")};
 `;
 
@@ -84,7 +70,7 @@ const Label = styled.label`
 `;
 
 export default function Signup() {
-  const [userId, setUserId] = useState(""); //추후 username으로 수정
+  const [userId, setUserId] = useState(""); // 추후 username으로 수정
   const [password, setPassword] = useState("");
   const isPasswordsMatch = password;
   const [isCheck, setIsCheck] = useState(false);
@@ -136,66 +122,37 @@ export default function Signup() {
     <div>
       <Container>
         <CustomColumn
-          width="100%"
+          width="30%"
           justifycontent="center"
           alignitems="center"
           gap="1rem"
         >
-          <CustomRow
-            width="50%"
-            justifycontent="flex-start"
-            alignitems="center"
-            gap="1rem"
-          >
-            <CustomFont color="black" font="1rem" fontWeight="bold">
-              아이디
-            </CustomFont>
-            <CustomFont color="red" font="1rem" fontWeight="bold">
-              *
-            </CustomFont>
-          </CustomRow>
-
-          <CustomRow
-            width="50%"
+          <CustomColumn
+            width="100%"
             justifycontent="center"
             alignitems="flex-start"
-            gap="1rem"
+            gap="0.5rem"
           >
+            <CustomFont color="black" font="1rem" fontWeight="bold">
+              아이디 <span style={{ color: "red" }}>*</span>
+            </CustomFont>
             <InputForm
               placeholder="사용하실 아이디를 입력하세요."
               value={userId}
               onChange={(e) => setUserId(e.target.value)}
               onKeyDown={handleKeyDown}
             />
-          </CustomRow>
-        </CustomColumn>
+          </CustomColumn>
 
-        <CustomColumn
-          width="100%"
-          justifycontent="center"
-          alignitems="center"
-          gap="1rem"
-        >
-          <CustomRow
-            width="50%"
-            justifycontent="flex-start"
-            alignitems="center"
-            gap="1rem"
+          <CustomColumn
+            width="100%"
+            justifycontent="center"
+            alignitems="flex-start"
+            gap="0.5rem"
           >
             <CustomFont color="black" font="1rem" fontWeight="bold">
-              비밀번호
+              비밀번호 <span style={{ color: "red" }}>*</span>
             </CustomFont>
-            <CustomFont color="red" font="1rem" fontWeight="bold">
-              *
-            </CustomFont>
-          </CustomRow>
-
-          <CustomRow
-            width="50%"
-            justifycontent="center"
-            alignitems="center"
-            gap="1rem"
-          >
             <InputForm
               type="password"
               placeholder="사용하실 비밀번호를 입력하세요."
@@ -203,16 +160,10 @@ export default function Signup() {
               onChange={(e) => setPassword(e.target.value)}
               onKeyDown={handleKeyDown}
             />
-          </CustomRow>
-        </CustomColumn>
-        <CustomColumn
-          width="100%"
-          justifycontent="center"
-          alignitems="center"
-          gap="1rem"
-        >
-          <CustomRow
-            width="80%"
+          </CustomColumn>
+
+          <CustomColumn
+            width="100%"
             justifycontent="center"
             alignitems="center"
             gap="1rem"
@@ -228,12 +179,11 @@ export default function Signup() {
                   }
                 }}
               />
-
               <CustomFont color="black" font="1rem">
                 개인정보 이용 약관에 동의합니다.
               </CustomFont>
             </Label>
-          </CustomRow>
+          </CustomColumn>
           <SignupButton isactive={isFormFilled} onClick={handleSignup}>
             <CustomFont font="1rem" color="white" fontWeight="bold">
               회원가입 완료

@@ -15,7 +15,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 50px;
-  margin-top: 30px;
+  padding-top: 30px;
   margin-bottom: 0;
   gap: 16px;
 `;
@@ -32,12 +32,17 @@ const ButtonBase = styled.button`
 
 const Button = styled(ButtonBase)`
   font-size: 24px;
-  color: ${(props) => props.color || "rgba(59, 59, 59, 0.6)"};
+  color: ${(props) => props.color || "#DDE2E0"};
 `;
 
 const LoginButton = styled(ButtonBase)`
+  width: 122px;
+  height: 54px;
   font-size: 24px;
-  color: #3b3b3b;
+  background-color: #20fb7c;
+  border: none;
+  border-radius: 8px;
+  color: #1c1e1b;
 `;
 
 const Box = styled.div`
@@ -57,11 +62,13 @@ const Img = styled.img`
   height: 64px;
   border: none;
 `;
-
+/*  display: flex;
+  flex-grow: 1;
+  justify-content: center; */
 const ButtonWrapper = styled.div`
   display: flex;
-  flex-grow: 1;
   justify-content: center;
+  width: 206px;
 `;
 
 const Navbar = () => {
@@ -82,12 +89,14 @@ const Navbar = () => {
         <Img src={rabbit_log2} alt="Rabbit Logo" />
 
         <Box />
-        <Button color={"#3b3b3b"} onClick={goToHome}>
+        <Button color={"#FBFBFB"} onClick={goToHome}>
           Home
         </Button>
         <Button>AI 스케줄</Button>
         <Button onClick={goToMyMap}>AI 추천</Button>
-        <LoginButton onClick={goToLogin}>로그인</LoginButton>
+        <ButtonWrapper>
+          <LoginButton onClick={goToLogin}>로그인</LoginButton>
+        </ButtonWrapper>
       </Container>
     </div>
   );
