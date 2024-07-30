@@ -71,7 +71,7 @@ const Navbar = () => {
     navigate("/login");
   };
   const goToHome = () => {
-    navigate("/home");
+    navigate("/");
   };
   const goToMyMap = () => {
     navigate("/map");
@@ -86,7 +86,7 @@ const Navbar = () => {
           Home
         </Button>
         <Button>AI 스케줄</Button>
-        <Button onClick={goToMyMap}>나의 여행</Button>
+        <Button onClick={goToMyMap}>AI 추천</Button>
         <LoginButton onClick={goToLogin}>로그인</LoginButton>
       </Container>
     </div>

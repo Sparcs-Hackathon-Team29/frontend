@@ -88,7 +88,7 @@ function Login() {
   const isFormFilled = userId && password;
 
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, logout } = useAuth();
 
   const handleLogin = async () => {
     if (isFormFilled) {
@@ -98,7 +98,7 @@ function Login() {
         formData.append("password", password);
 
         const response = await axios.post(
-          `https://f4c3-106-101-130-233.ngrok-free.app/login`,
+          `https://a023-106-101-130-185.ngrok-free.app/login`,
           formData
         );
         console.log(response);
@@ -115,7 +115,7 @@ function Login() {
         //GET 요청 보내기
         try {
           const adminResponse = await axios.post(
-            "https://f4c3-106-101-130-233.ngrok-free.app/admin",
+            "https://a023-106-101-130-185.ngrok-free.app/admin",
             {}, // 빈 객체를 요청 본문으로 사용
             {
               headers: {
@@ -136,6 +136,14 @@ function Login() {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("access");
+    logout();
+    alert("로그아웃 되었습니다.");
+    setTimeout(() => {
+      navigate("/"); // 메인페이지 이동
+    }, 1500);
+  };
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleLogin();
@@ -198,6 +206,7 @@ function Login() {
           </LoginButton>
         </CustomColumn>
         <Button onClick={goToSignup}>회원가입</Button>
+        <Button onClick={handleLogout}>로그아웃</Button>
       </Container>
     </div>
   );

@@ -25,7 +25,7 @@ function App() {
       {/*{!noFooterPaths.includes(location.pathname) && }*/}
       <NavermapsProvider ncpClientId="pfbhixakqq">
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/map" element={<MyMap />} />

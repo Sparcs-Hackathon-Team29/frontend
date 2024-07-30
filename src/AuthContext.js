@@ -7,7 +7,7 @@ export function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const login = (username) => {
-    setIsLoggedIn(username); // 로그인 시 프로필 이미지 로드
+    setIsLoggedIn(username); // 로그인
   };
 
   const logout = () => {
