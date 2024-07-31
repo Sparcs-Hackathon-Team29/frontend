@@ -1,5 +1,12 @@
 import styled from "styled-components";
 import { useState } from "react";
+
+import goodimg_active from "../../img/icons/좋아요_활성.png";
+import goodimg_disactive from "../../img/icons/좋아요_비활성.png";
+import link_active from "../../img/icons/링크복사.png";
+import visit_active from "../../img/icons/사이트_방문.png";
+import delete_active from "../../img/icons/제거.png";
+
 const Container = styled.div`
   display: block;
   height: 100vh;
@@ -48,7 +55,6 @@ const CircleNumber = styled.div`
 const SquareBox = styled.div`
   width: 102px;
   height: 102px;
-  background-color: #ccc;
   border-radius: 8px;
   margin-right: 16px;
 `;
@@ -82,15 +88,14 @@ const SubText = styled.div`
 const Button = styled.button`
   height: 92px;
   width: 92px;
-
   flex-direction: column;
   align-items: center;
   border: none;
-
   margin-left: 16px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
+  background-color: white;
 `;
 
 const EmotionButton = styled.button`
@@ -111,7 +116,6 @@ const EmotionButton = styled.button`
 const ButtonImg = styled.img`
   height: 32px;
   width: 32px;
-  background-color: #dde2e0;
   padding: 0;
   margin-top: 20px;
   margin-bottom: 5px;
@@ -131,6 +135,10 @@ const ButtonText = styled.div`
 function SpotBar({ number, text1, text2, img }) {
   const [selectedThirdButton, setThirdSelectedButton] = useState(null);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const toggleLike = () => {
+    setIsLiked(!isLiked);
+  };
   const handleButtonClick = (buttonText) => {
     if (selectedThirdButton === buttonText) {
       setThirdSelectedButton(null);
@@ -155,28 +163,20 @@ function SpotBar({ number, text1, text2, img }) {
         </TextContainer>
       </LeftPart>
       <RightPart>
-        <EmotionButton
-          isSelected={selectedThirdButton === "좋아요"}
-          disabled={isButtonDisabled && selectedThirdButton !== "좋아요"}
-          onClick={() => handleButtonClick("좋아요")}
-        >
-          <ButtonImg />
+        <Button onClick={toggleLike}>
+          <ButtonImg src={isLiked ? goodimg_active : goodimg_disactive} />
           <ButtonText>좋아요</ButtonText>
-        </EmotionButton>
-        <EmotionButton
-          isSelected={selectedThirdButton === "링크복사"}
-          disabled={isButtonDisabled && selectedThirdButton !== "링크복사"}
-          onClick={() => handleButtonClick("링크복사")}
-        >
-          <ButtonImg />
-          <ButtonText>링크복사</ButtonText>
-        </EmotionButton>
+        </Button>
         <Button>
-          <ButtonImg />
+          <ButtonImg src={link_active} />
+          <ButtonText>링크복사</ButtonText>
+        </Button>
+        <Button>
+          <ButtonImg src={visit_active} />
           <ButtonText>사이트 방문</ButtonText>
         </Button>
         <Button>
-          <ButtonImg />
+          <ButtonImg src={delete_active} />
           <ButtonText>삭제</ButtonText>
         </Button>
       </RightPart>

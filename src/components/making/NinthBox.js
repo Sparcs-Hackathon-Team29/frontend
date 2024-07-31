@@ -66,37 +66,39 @@ function NinthBox({ canNavigate, feedbackData }) {
   console.log(feedbackData);
   const navigate = useNavigate();
   const { setMySelect } = useAuth();
-  const handleSubmit = async () => {
-    try {
-      const mydataResponse = await axios.post(
-        "https://3763-106-101-130-32.ngrok-free.app/api/completion",
-        { feedbackData }, // 요청 본문
-        {
-          headers: {
-            access: localStorage.getItem("access"), // 로컬 스토리지에서 토큰 가져오기
-          },
-        }
-      );
-      // console.log("completion(making) page response:", mydataResponse); // 성공적인 응답 로깅
-      navigate("/loading");
-      setMySelect(mydataResponse);
-    } catch (error) {
-      console.error("요청 페이지 중 오류가 발생했습니다:", error); // 에러 객체 로깅
-    }
-  };
-
+  // const handleSubmit = async () => {
+  //   try {
+  //     const mydataResponse = await axios.post(
+  //       "https://3763-106-101-130-32.ngrok-free.app/api/completion",
+  //       { feedbackData }, // 요청 본문
+  //       {
+  //         headers: {
+  //           access: localStorage.getItem("access"), // 로컬 스토리지에서 토큰 가져오기
+  //         },
+  //       }
+  //     );
+  //     // console.log("completion(making) page response:", mydataResponse); // 성공적인 응답 로깅
+  //     navigate("/loading");
+  //     setMySelect(mydataResponse);
+  //   } catch (error) {
+  //     console.error("요청 페이지 중 오류가 발생했습니다:", error); // 에러 객체 로깅
+  //   }
+  // };
+  function handleSubmit() {
+    navigate("/loading");
+  }
   return (
     <NinthContain>
       <NinthContainBot>
         <Button color="#000000" backgroundColor="#FFFFFF" onClick={scrollToTop}>
           맨 위로 돌아가기
         </Button>
-        <NavButton onClick={handleSubmit} disabled={canNavigate == null}>
-          스케줄 생성 시작
-        </NavButton>
+        <NavButton onClick={handleSubmit}>스케줄 생성 시작</NavButton>
       </NinthContainBot>
     </NinthContain>
   );
 }
 
 export default NinthBox;
+
+/**이전 사용 navbutton */

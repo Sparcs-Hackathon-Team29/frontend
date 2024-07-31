@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useAuth } from "../../AuthContext"; // 가정한 경로입니다. 실제 경로에 맞게 수정하세요.
+import { useAuth } from "../../AuthContext";
 
 import rabbit_log2 from "../../img/rabbit_log2.png";
 import rabbit_log3 from "../../img/rabbit_log3.png";
@@ -13,12 +13,10 @@ const Container = styled.div`
   width: 100%;
   height: 50px;
   z-index: 2;
-  padding-top: 0;
+  padding-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
-  padding-top: 30px;
   margin-bottom: 0;
   gap: 16px;
 `;
@@ -48,18 +46,6 @@ const LoginButton = styled(ButtonBase)`
   border-radius: 8px;
 `;
 
-const Box = styled.div`
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  width: 206px;
-  font-weight: 600;
-  border: none;
-  margin: 0;
-  padding: 0;
-`;
-
 const Img = styled.img`
   width: 206px;
   height: 64px;
@@ -78,20 +64,20 @@ const Navbar = () => {
   const { isLoggedIn, logout } = useAuth();
 
   const getButtonColor = (path) => {
-    if (location.pathname === path) {
-      return path === "/" ? "rgba(221,226,224,1)" : "rgba(221,226,224,0.6)";
-    } else if (
-      location.pathname === "/myspot" ||
-      location.pathname === "/make"
-    ) {
-      return path === "/make" ? "#3B3B3B" : "rgba(59,59,59,0.6)";
-    } else if (
-      location.pathname === "/randommake" ||
-      location.pathname === "/randomresult"
-    ) {
-      return path === "/randommake" ? "#3B3B3B" : "rgba(59,59,59,0.6)";
+    const currentPath = location.pathname;
+
+    if (currentPath === path) {
+      if (path === "/") {
+        return "#DDE2E0"; // Home 글자 색상
+      } else if (path === "/myspot" || path === "/make") {
+        return "#3B3B3B"; // 나의 스팟 글자 색상
+      } else if (path === "/randommake" || path === "/randomresult") {
+        return "#3B3B3B"; // AI 추천 글자 색상
+      } else if (path === "/mypage") {
+        return "#3B3B3B"; // 보관함 글자 색상
+      }
     }
-    return "rgba(59,59,59,0.6)";
+    return "rgba(59,59,59,0.4)"; // 그 외 글자 색상
   };
 
   const getImageSrc = () => {
@@ -130,7 +116,6 @@ const Navbar = () => {
     <div>
       <Container>
         <Img src={getImageSrc()} alt="Rabbit Logo" onClick={goToHome} />
-
         <Button color={getButtonColor("/")} onClick={goToHome}>
           Home
         </Button>

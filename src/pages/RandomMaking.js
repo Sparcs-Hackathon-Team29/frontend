@@ -133,7 +133,7 @@ function RandomMaking() {
         <Title>선택한 지역 중심으로 추천 장소를 찾아드릴게요</Title>
         <SubTitle>원하시는 지하철역이나 주소를 입력해주세요</SubTitle>
 
-        <Icon hasInput={hasInput} />
+        {/* {<Icon hasInput={hasInput} />} */}
         <InputForm
           placeholder="가고 싶은 곳의 역, 주변 명소의 이름을 적어 주세요. ex 혜화역, 롯데타워"
           onChange={handleInputChange}
