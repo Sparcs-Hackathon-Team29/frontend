@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../../AuthContext"; // 가정한 경로입니다. 실제 경로에 맞게 수정하세요.
 
 import rabbit_log2 from "../../img/rabbit_log2.png";
 import rabbit_log3 from "../../img/rabbit_log3.png";
@@ -42,10 +43,9 @@ const LoginButton = styled(ButtonBase)`
   height: 54px;
   font-size: 24px;
   font-weight: 700;
-  background-color: #20fb7c;
-  border: none;
+  background-color: ${(props) => props.bgColor};
+  color: ${(props) => props.textColor};
   border-radius: 8px;
-  color: #1c1e1b;
 `;
 
 const Box = styled.div`
@@ -75,17 +75,23 @@ const ButtonWrapper = styled.div`
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { isLoggedIn, logout } = useAuth();
 
   const getButtonColor = (path) => {
     if (location.pathname === path) {
-      return path === "/" ? "rgba(221,226,224,1)" : "#3B3B3B";
+      return path === "/" ? "rgba(221,226,224,1)" : "rgba(221,226,224,0.6)";
     } else if (
       location.pathname === "/myspot" ||
       location.pathname === "/make"
     ) {
-      return path === "/make" ? "#3B3B3B" : "rgba(221,226,224,0.6)";
+      return path === "/make" ? "#3B3B3B" : "rgba(59,59,59,0.6)";
+    } else if (
+      location.pathname === "/randommake" ||
+      location.pathname === "/randomresult"
+    ) {
+      return path === "/randommake" ? "#3B3B3B" : "rgba(59,59,59,0.6)";
     }
-    return "rgba(221,226,224,0.6)";
+    return "rgba(59,59,59,0.6)";
   };
 
   const getImageSrc = () => {
@@ -95,14 +101,29 @@ const Navbar = () => {
   const goToLogin = () => {
     navigate("/login");
   };
+
+  const handleLogout = () => {
+    if (isLoggedIn) {
+      localStorage.removeItem("access");
+      logout();
+      alert("로그아웃 되었습니다.");
+      setTimeout(() => {
+        navigate("/"); // 메인페이지 이동
+      }, 1500);
+    }
+  };
+
   const goToHome = () => {
     navigate("/");
   };
-  const goToMyMap = () => {
-    navigate("/map");
-  };
   const goToMaking = () => {
     navigate("/make");
+  };
+  const goToRandommake = () => {
+    navigate("/randommake");
+  };
+  const goToMypage = () => {
+    navigate("/mypage");
   };
 
   return (
@@ -110,18 +131,26 @@ const Navbar = () => {
       <Container>
         <Img src={getImageSrc()} alt="Rabbit Logo" onClick={goToHome} />
 
-        <Box />
         <Button color={getButtonColor("/")} onClick={goToHome}>
           Home
         </Button>
         <Button color={getButtonColor("/make")} onClick={goToMaking}>
           나의 스팟
         </Button>
-        <Button color={getButtonColor("/map")} onClick={goToMyMap}>
+        <Button color={getButtonColor("/randommake")} onClick={goToRandommake}>
           AI 추천
         </Button>
+        <Button color={getButtonColor("/mypage")} onClick={goToMypage}>
+          보관함
+        </Button>
         <ButtonWrapper>
-          <LoginButton onClick={goToLogin}>로그인</LoginButton>
+          <LoginButton
+            onClick={isLoggedIn ? handleLogout : goToLogin}
+            bgColor={isLoggedIn ? "#1B1B1B" : "#20FB7C"}
+            textColor={isLoggedIn ? "#20FB7C" : "#1C1E1B"}
+          >
+            {isLoggedIn ? "로그아웃" : "로그인"}
+          </LoginButton>
         </ButtonWrapper>
       </Container>
     </div>

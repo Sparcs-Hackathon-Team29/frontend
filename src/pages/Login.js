@@ -105,7 +105,7 @@ function Login() {
         formData.append("password", password);
 
         const response = await axios.post(
-          `https://1bc0-106-101-130-236.ngrok-free.app/login`,
+          `https://3763-106-101-130-32.ngrok-free.app/login`,
           formData
         );
         console.log(response);
@@ -120,20 +120,21 @@ function Login() {
         alert("로그인 성공~.");
         console.log(typeof token);
         //GET 요청 보내기
-        try {
-          const adminResponse = await axios.post(
-            "https://1bc0-106-101-130-236.ngrok-free.app/admin",
-            {}, // 빈 객체를 요청 본문으로 사용
-            {
-              headers: {
-                access: token,
-              },
-            }
-          );
-          console.log("Admin page response:", adminResponse);
-        } catch (adminError) {
-          console.error("Admin page 요청 중 오류가 발생했습니다:", adminError);
-        }
+
+        // try {
+        //   const adminResponse = await axios.post(
+        //     "https://3763-106-101-130-32.ngrok-free.app/admin",
+        //     {}, // 빈 객체를 요청 본문으로 사용
+        //     {
+        //       headers: {
+        //         access: localStorage.getItem("access"),
+        //       },
+        //     }
+        //   );
+        //   console.log("Admin page response:", adminResponse);
+        // } catch (adminError) {
+        //   console.error("Admin page 요청 중 오류가 발생했습니다:", adminError);
+        // }
       } catch (error) {
         console.error("로그인 중 오류가 발생했습니다:", error);
         alert("로그인 중 오류가 발생했습니다. 다시 시도해주세요.");
@@ -206,18 +207,26 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               onKeyDown={handleKeyDown}
             />
+            <CustomColumn
+              width="100%"
+              justifycontent="center"
+              alignitems="center"
+              gap="1rem"
+            >
+              <LoginButton isactive={isFormFilled} onClick={handleLogin}>
+                <CustomFont font="1rem" color="white" fontWeight="bold">
+                  로그인 하기
+                </CustomFont>
+              </LoginButton>
+            </CustomColumn>
           </CustomColumn>
-
-          <LoginButton isactive={isFormFilled} onClick={handleLogin}>
-            <CustomFont font="1rem" color="white" fontWeight="bold">
-              로그인 하기
-            </CustomFont>
-          </LoginButton>
+          <CustomRow width="30%">
+            <Button onClick={goToSignup}>회원가입</Button>
+            <LogoutButton isactive={isLoggedIn} onClick={handleLogout}>
+              로그아웃
+            </LogoutButton>
+          </CustomRow>
         </CustomColumn>
-        <Button onClick={goToSignup}>회원가입</Button>
-        <LogoutButton isactive={isLoggedIn} onClick={handleLogout}>
-          로그아웃
-        </LogoutButton>
       </Container>
     </div>
   );

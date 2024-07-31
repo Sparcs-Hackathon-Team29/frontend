@@ -1,5 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import morning_active from "../../img/icons/오전_활성.png";
+import morning_disactive from "../../img/icons/오전_비활성.png";
+import afternoon_active from "../../img/icons/오후_활성.png";
+import afternoon_disactive from "../../img/icons/오후_비활성.png";
+import night_active from "../../img/icons/저녁_활성.png";
+import night_disactive from "../../img/icons/저녁_비활성.png";
+import midnight_active from "../../img/icons/심야_활성.png";
+import midnight_disactive from "../../img/icons/심야_비활성.png";
 
 const SeventhContainer = styled.div`
   display: block;
@@ -54,7 +62,6 @@ const SeventhButton = styled.button`
 const SeventhButtonImg = styled.img`
   height: 96px;
   width: 96px;
-  background-color: #dde2e0;
   padding: 0;
   margin-top: 28px;
   margin-bottom: 10px;
@@ -90,7 +97,31 @@ function SeventhBox({ setSeventhfeedback }) {
     setSeventhSelectedButtons(newSelectedButtons);
     setSeventhfeedback(newSelectedButtons.join(" "));
   };
+  const selectForthButtonImg = ({ isSelected, buttonText }) => {
+    let activeImage, disactiveImage;
+    switch (buttonText) {
+      case "09:00~12:00":
+        activeImage = morning_active;
+        disactiveImage = morning_disactive;
+        break;
+      case "12:00~17:00":
+        activeImage = afternoon_active;
+        disactiveImage = afternoon_disactive;
+        break;
+      case "17:00~22:00":
+        activeImage = night_active;
+        disactiveImage = night_disactive;
+        break;
+      case "22:00 이후":
+        activeImage = midnight_active;
+        disactiveImage = midnight_disactive;
+        break;
+      default:
+        break;
+    }
 
+    return isSelected ? activeImage : disactiveImage;
+  };
   return (
     <SeventhContainer>
       <SeventhTitle>원하시는 시간대가 있나요?</SeventhTitle>
@@ -102,7 +133,12 @@ function SeventhBox({ setSeventhfeedback }) {
           isSelected={selectedSeventhButtons.includes("09:00~12:00")}
           onClick={() => handleButtonClick("09:00~12:00")}
         >
-          <SeventhButtonImg />
+          <SeventhButtonImg
+            src={selectForthButtonImg({
+              isSelected: selectedSeventhButtons.includes("09:00~12:00"),
+              buttonText: "09:00~12:00",
+            })}
+          />
           <SeventhButtonText
             isSelected={selectedSeventhButtons.includes("09:00~12:00")}
           >
@@ -118,7 +154,12 @@ function SeventhBox({ setSeventhfeedback }) {
           isSelected={selectedSeventhButtons.includes("12:00~17:00")}
           onClick={() => handleButtonClick("12:00~17:00")}
         >
-          <SeventhButtonImg />
+          <SeventhButtonImg
+            src={selectForthButtonImg({
+              isSelected: selectedSeventhButtons.includes("12:00~17:00"),
+              buttonText: "12:00~17:00",
+            })}
+          />
           <SeventhButtonText
             isSelected={selectedSeventhButtons.includes("12:00~17:00")}
           >
@@ -134,7 +175,12 @@ function SeventhBox({ setSeventhfeedback }) {
           isSelected={selectedSeventhButtons.includes("17:00~22:00")}
           onClick={() => handleButtonClick("17:00~22:00")}
         >
-          <SeventhButtonImg />
+          <SeventhButtonImg
+            src={selectForthButtonImg({
+              isSelected: selectedSeventhButtons.includes("17:00~22:00"),
+              buttonText: "17:00~22:00",
+            })}
+          />
           <SeventhButtonText
             isSelected={selectedSeventhButtons.includes("17:00~22:00")}
           >
@@ -150,7 +196,12 @@ function SeventhBox({ setSeventhfeedback }) {
           isSelected={selectedSeventhButtons.includes("22:00 이후")}
           onClick={() => handleButtonClick("22:00 이후")}
         >
-          <SeventhButtonImg />
+          <SeventhButtonImg
+            src={selectForthButtonImg({
+              isSelected: selectedSeventhButtons.includes("22:00 이후"),
+              buttonText: "22:00 이후",
+            })}
+          />
           <SeventhButtonText
             isSelected={selectedSeventhButtons.includes("22:00 이후")}
           >

@@ -13,6 +13,7 @@ const Container = styled.div`
 const FirstContain = styled.div`
   display: block;
   position: relative;
+  width: 1316px;
   text-align: left;
 `;
 

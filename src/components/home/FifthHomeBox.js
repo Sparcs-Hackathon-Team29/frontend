@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import longticket from "../../img/longticket.png";
+import leftimg from "../../img/bienoh00_make_a_image_of_korean_palace_day_long_shot_f355ad6f-ee3c-4059-91c3-8ce1021c9833.png";
 const FifthContainer = styled.div`
   display: block;
   position: relative;
@@ -104,7 +105,7 @@ function FifthHomeBox() {
     <FifthContainer>
       <TitleFont>나의 선택을 중심으로 네이버가 추천 스팟을 알려줘요</TitleFont>
       <FifthImg src={longticket} alt="Background" />
-      <LeftImage alt="Left Image" />
+      <LeftImage src={leftimg} alt="Left Image" />
       <FifthTitle>나의 서울 경복궁역 산책</FifthTitle>
       <TextContainer>
         <Row>

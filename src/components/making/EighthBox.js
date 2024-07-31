@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
+import pet_active from "../../img/icons/반려동물_활성.png";
+import pet_disactive from "../../img/icons/반려동물_비활성.png";
+import parking_active from "../../img/icons/주차_활성.png";
+import parking_disactive from "../../img/icons/주차_비활성.png";
 
 const EighthContainer = styled.div`
   display: block;
@@ -56,7 +60,6 @@ const EighthButton = styled.button`
 const EighthButtonImg = styled.img`
   height: 96px;
   width: 96px;
-  background-color: #dde2e0;
   margin-bottom: 15px;
 `;
 
@@ -79,7 +82,23 @@ function EighthBox({ setEighthfeedback }) {
       return newState;
     });
   };
+  const selectForthButtonImg = ({ isSelected, buttonText }) => {
+    let activeImage, disactiveImage;
+    switch (buttonText) {
+      case "반려동물":
+        activeImage = pet_active;
+        disactiveImage = pet_disactive;
+        break;
+      case "주차 가능":
+        activeImage = parking_active;
+        disactiveImage = parking_disactive;
+        break;
+      default:
+        break;
+    }
 
+    return isSelected ? activeImage : disactiveImage;
+  };
   return (
     <EighthContainer>
       <EighthTitle>마지막으로 고려할 사항이 있을까요?</EighthTitle>
@@ -89,14 +108,24 @@ function EighthBox({ setEighthfeedback }) {
           isSelected={selectedButtons.includes("반려동물")}
           onClick={() => handleButtonClick("반려동물")}
         >
-          <EighthButtonImg />
+          <EighthButtonImg
+            src={selectForthButtonImg({
+              isSelected: selectedButtons.includes("반려동물"),
+              buttonText: "반려동물",
+            })}
+          />
           <EighthButtonText>반려동물</EighthButtonText>
         </EighthButton>
         <EighthButton
           isSelected={selectedButtons.includes("주차 가능")}
           onClick={() => handleButtonClick("주차 가능")}
         >
-          <EighthButtonImg />
+          <EighthButtonImg
+            src={selectForthButtonImg({
+              isSelected: selectedButtons.includes("주차 가능"),
+              buttonText: "주차 가능",
+            })}
+          />
           <EighthButtonText>주차 가능</EighthButtonText>
         </EighthButton>
       </EighthButtonBox>

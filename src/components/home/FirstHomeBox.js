@@ -41,6 +41,9 @@ function FirstHomeBox() {
   const goToMaking = () => {
     navigate("/make");
   };
+  const goToRandommake = () => {
+    navigate("/randommake");
+  };
   return (
     <FirstContain>
       <FirstContainBot>
@@ -51,6 +54,7 @@ function FirstHomeBox() {
           color="#000000"
           backgroundColor="#FBFBFB"
           border="1px solid rgba(40,40,40,0.5)"
+          onClick={goToRandommake}
         >
           AI 스팟 추천
         </Button>

@@ -88,7 +88,7 @@ export default function Signup() {
 
         // POST 요청 보내기
         const response = await axios.post(
-          "https://1bc0-106-101-130-236.ngrok-free.app/join",
+          "https://3763-106-101-130-32.ngrok-free.app/join",
           formData,
           {
             headers: {

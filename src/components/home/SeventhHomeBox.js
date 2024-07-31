@@ -61,6 +61,9 @@ function SeventhHomeBox() {
   const goToMaking = () => {
     navigate("/make");
   };
+  const goToRandommake = () => {
+    navigate("/randommake");
+  };
   return (
     <SeventhContainer>
       <SeventhLeft>
@@ -80,6 +83,7 @@ function SeventhHomeBox() {
           color="#1C1E1B"
           backgroundcolor="#20FB7C"
           border="1px solid #1B1B1B"
+          onClick={goToRandommake}
         >
           랜덤 스팟 생성
         </SeventhButton>

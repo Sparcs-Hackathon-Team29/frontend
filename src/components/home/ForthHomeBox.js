@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import home1 from "../../img/home1.png";
 const ForthContainer = styled.div`
   display: flex;
   position: relative;
@@ -22,6 +23,12 @@ const ForthLeft = styled.div`
   padding: 0;
   background-color: #ccc;
 `;
+const Img = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 const ForthRight = styled.div`
   flex: 1; /* 컨테이너의 절반을 차지 */
   display: flex;
@@ -58,7 +65,9 @@ const SelectBox = styled.div`
 function ForthHomeBox() {
   return (
     <ForthContainer>
-      <ForthLeft></ForthLeft>
+      <ForthLeft>
+        <Img src={home1} alt="좌측 사진" />
+      </ForthLeft>
       <ForthRight>
         <SelectLeft>
           <SelectBox>내 동네</SelectBox>

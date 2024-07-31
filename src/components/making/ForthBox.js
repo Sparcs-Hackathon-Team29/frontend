@@ -1,5 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import foot_active from "../../img/icons/도보_활성.png";
+import foot_disactive from "../../img/icons/도보_비활성.png";
+import car_active from "../../img/icons/자차_활성.png";
+import car_disactive from "../../img/icons/자차_비활성.png";
+import bike_acive from "../../img/icons/자전거_활성.png";
+import bike_disactive from "../../img/icons/자전거_비활성.png";
+import bus_active from "../../img/icons/대중교통_활성.png";
+import bus_disactive from "../../img/icons/대중교통_비활성.png";
 
 const ForthContainer = styled.div`
   display: block;
@@ -56,7 +64,6 @@ const ThirdButton = styled.button`
 const ThirdButtonImg = styled.img`
   height: 96px;
   width: 96px;
-  background-color: #dde2e0;
   padding: 0;
   margin-top: 32px;
   margin-bottom: 18px;
@@ -84,6 +91,31 @@ function ForthBox({ setThirdfeedback }) {
       setThirdfeedback(buttonText);
     }
   };
+  const selectThridButtonImg = ({ isSelected, buttonText }) => {
+    let activeImage, disactiveImage;
+    switch (buttonText) {
+      case "도보":
+        activeImage = foot_active;
+        disactiveImage = foot_disactive;
+        break;
+      case "자차":
+        activeImage = car_active;
+        disactiveImage = car_disactive;
+        break;
+      case "자전거":
+        activeImage = bike_acive;
+        disactiveImage = bike_disactive;
+        break;
+      case "대중교통":
+        activeImage = bus_active;
+        disactiveImage = bus_disactive;
+        break;
+      default:
+        break;
+    }
+
+    return isSelected ? activeImage : disactiveImage;
+  };
 
   return (
     <ForthContainer>
@@ -95,7 +127,12 @@ function ForthBox({ setThirdfeedback }) {
           disabled={isButtonDisabled && selectedThirdButton !== "도보"}
           onClick={() => handleButtonClick("도보")}
         >
-          <ThirdButtonImg />
+          <ThirdButtonImg
+            src={selectThridButtonImg({
+              isSelected: selectedThirdButton === "도보",
+              buttonText: "도보",
+            })}
+          />
           <ThirdButtonText>도보</ThirdButtonText>
         </ThirdButton>
         <ThirdButton
@@ -103,7 +140,12 @@ function ForthBox({ setThirdfeedback }) {
           disabled={isButtonDisabled && selectedThirdButton !== "자차"}
           onClick={() => handleButtonClick("자차")}
         >
-          <ThirdButtonImg />
+          <ThirdButtonImg
+            src={selectThridButtonImg({
+              isSelected: selectedThirdButton === "자차",
+              buttonText: "자차",
+            })}
+          />
           <ThirdButtonText>자차</ThirdButtonText>
         </ThirdButton>
         <ThirdButton
@@ -111,7 +153,12 @@ function ForthBox({ setThirdfeedback }) {
           disabled={isButtonDisabled && selectedThirdButton !== "자전거"}
           onClick={() => handleButtonClick("자전거")}
         >
-          <ThirdButtonImg />
+          <ThirdButtonImg
+            src={selectThridButtonImg({
+              isSelected: selectedThirdButton === "자전거",
+              buttonText: "자전거",
+            })}
+          />
           <ThirdButtonText>자전거</ThirdButtonText>
         </ThirdButton>
         <ThirdButton
@@ -119,7 +166,12 @@ function ForthBox({ setThirdfeedback }) {
           disabled={isButtonDisabled && selectedThirdButton !== "대중교통"}
           onClick={() => handleButtonClick("대중교통")}
         >
-          <ThirdButtonImg />
+          <ThirdButtonImg
+            src={selectThridButtonImg({
+              isSelected: selectedThirdButton === "대중교통",
+              buttonText: "대중교통",
+            })}
+          />
           <ThirdButtonText>대중교통</ThirdButtonText>
         </ThirdButton>
       </ThirdButtonnBox>

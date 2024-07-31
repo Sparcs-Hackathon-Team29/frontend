@@ -9,7 +9,7 @@ import ForthHomeBox from "../components/home/ForthHomeBox";
 import FifthHomeBox from "../components/home/FifthHomeBox";
 import SixHomeBox from "../components/home/SixthHomeBox";
 import SeventhHomeBox from "../components/home/SeventhHomeBox";
-
+import footing from "../img/foooteer.png";
 const Container = styled.div`
   display: block;
   height: 100vh;
@@ -58,7 +58,15 @@ const TirdTitleFont = styled.div`
   position: relative;
   z-index: 1;
 `;
-
+const FootBackgroundImage = styled.img`
+  position: relative;
+  width: 100%;
+  background: #ccc;
+  margin-top: 130%;
+  width: 100%; // 너비를 화면 전체로 설정
+  object-fit: cover; // 이미지가 컨테이너를 꽉 채우도록 설정
+  z-index: -2; // 다른 요소들이 위에 오도록 z-index 설정
+`;
 const Home = () => {
   return (
     <div>
@@ -76,6 +84,7 @@ const Home = () => {
         <FifthHomeBox />
         <SixHomeBox />
         <SeventhHomeBox />
+        <FootBackgroundImage src={footing} alt="푸우우우우터" />
       </Container>
     </div>
   );
