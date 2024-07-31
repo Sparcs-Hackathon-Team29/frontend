@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 const SeventhContainer = styled.div`
   display: flex;
@@ -8,7 +9,7 @@ const SeventhContainer = styled.div`
   top: 2500px;
   left: 50%;
   transform: translate(-50%, 0%);
-  width: 1400px;
+  width: 1200px;
   padding-bottom: 150px;
   gap: 16px;
 `;
@@ -56,20 +57,31 @@ const SeventhButton = styled.div`
   background-color: ${(props) => props.backgroundcolor || "#282828"};
 `;
 function SeventhHomeBox() {
+  const navigate = useNavigate();
+  const goToMaking = () => {
+    navigate("/make");
+  };
   return (
     <SeventhContainer>
       <SeventhLeft>
-        <SeventhTitle>트래빗으로 스케줄 생성하기</SeventhTitle>
-        <SeventhButton>AI 스케줄 생성</SeventhButton>
+        <SeventhTitle>나의 스팟 추천받기</SeventhTitle>
+        <SeventhButton
+          color="#1C1E1B"
+          backgroundcolor="#20FB7C"
+          border="1px solid #1B1B1B"
+          onClick={goToMaking}
+        >
+          나의 스팟 추천
+        </SeventhButton>
       </SeventhLeft>
       <SeventhRight>
-        <SeventhTitle>트래빗이 추천하는 행선지 받아보기</SeventhTitle>
+        <SeventhTitle>AI의 랜덤 스팟</SeventhTitle>
         <SeventhButton
           color="#1C1E1B"
           backgroundcolor="#20FB7C"
           border="1px solid #1B1B1B"
         >
-          AI 행선지 추천
+          랜덤 스팟 생성
         </SeventhButton>
       </SeventhRight>
     </SeventhContainer>

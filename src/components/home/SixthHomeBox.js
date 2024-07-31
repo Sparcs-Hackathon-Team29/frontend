@@ -21,7 +21,6 @@ const SixthTopBoxContainer = styled.div`
   height: 428px;
   width: 100%;
   gap: 16px;
-  background-color: #ccc;
 `;
 const SixthBotBoxContainer = styled.div`
   display: flex;
@@ -34,7 +33,6 @@ const SixthBotBoxContainer = styled.div`
   height: 428px;
   width: 100%;
   gap: 16px;
-  background-color: #ccc;
 `;
 const TitleFont = styled.div`
   font-size: 48px;

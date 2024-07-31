@@ -27,13 +27,6 @@ const SixSubTitle = styled.div`
   font-weight: 500;
 `;
 
-const SixBotTitle = styled.div`
-  color: rgba(40, 40, 40, 0.5);
-  font-size: 24px;
-  font-weight: 500;
-  margin-top: 10px;
-`;
-
 const InputForm = styled.input`
   border: 1.5px solid rgba(0, 0, 0, 0.5);
   background-color: ${(props) => (props.hasInput ? "#000" : "#fbfbfb")};
@@ -56,7 +49,7 @@ const InputForm = styled.input`
 
 const Icon = styled.div`
   position: absolute;
-  top: 218px;
+  top: 180px;
   left: 500px;
   height: 24px;
   width: 24px;
@@ -76,9 +69,7 @@ function SixBox({ setSixthfeedback }) {
     <SixContainer>
       <SixTitle>가고 싶은 지역이 어디신가요?</SixTitle>
       <SixSubTitle>원하시는 지하철역이나 주소를 입력해주세요</SixSubTitle>
-      <SixBotTitle>
-        현재 계신 위치에 따라 실제 이동 거리는 바뀔 수 있어요
-      </SixBotTitle>
+
       <Icon hasInput={hasInput} />
       <InputForm
         placeholder="가고 싶은 곳의 역, 주변 명소의 이름을 적어 주세요. ex 혜화역, 롯데타워"

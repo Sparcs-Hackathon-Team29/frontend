@@ -65,6 +65,12 @@ const ForthButtonSubText = styled.div`
   font-weight: 400;
   font-size: 17px;
 `;
+const FifthBotTitle = styled.div`
+  color: rgba(40, 40, 40, 0.5);
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: 25px;
+`;
 
 function FifthBox({ setForthfeedback }) {
   const [selectedForthButton, setForthSelectedButton] = useState(null);
@@ -123,6 +129,9 @@ function FifthBox({ setForthfeedback }) {
           </ForthButtonSubText>
         </ForthButton>
       </ForthButtonnBox>
+      <FifthBotTitle>
+        현재 계신 위치에 따라 실제 이동 거리는 바뀔 수 있어요
+      </FifthBotTitle>
     </FifthContainer>
   );
 }

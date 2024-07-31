@@ -90,7 +90,7 @@ function SecondBox({ setFirstfeedback }) {
 
   return (
     <SecondContainer>
-      <SecondTitle>어떤 목적으로 여행을 떠나시나요?</SecondTitle>
+      <SecondTitle>어떤 활동을 하고 싶으신가요?</SecondTitle>
       <SecondSubTitle>
         지금 가장 하고 싶은 것을 하나만 골라 주세요
       </SecondSubTitle>

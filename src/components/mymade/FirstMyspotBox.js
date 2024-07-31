@@ -1,58 +1,61 @@
+import React from "react";
 import styled from "styled-components";
 import longticket from "../../img/longticket.png";
-const FifthContainer = styled.div`
-  display: block;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
   position: relative;
-  z-index: 1;
-  top: 2000px;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  margin: 20px auto;
-  text-align: center;
-`;
-const TitleFont = styled.div`
-  font-size: 48px;
-  text-align: center;
-  letter-spacing: 2px;
-  padding-bottom: 40px;
-  font-weight: 600;
-  color: #000000;
-  width: 100%;
-  position: relative;
-  z-index: 1;
 `;
 
-const FifthImg = styled.img`
+const FirstContain = styled.div`
+  display: block;
+  position: relative;
+  text-align: left;
+`;
+
+const TopText = styled.div`
+  color: #000000;
+  font-weight: 700;
+  font-size: 20px;
+`;
+
+const FirstImg = styled.img`
   display: flex;
   gap: 16px;
   width: 1316px;
   justify-content: center;
-  margin-top: 20px;
   margin: 0 auto;
+  margin-top: -20px; // 간격 조정을 위해 음수 마진 적용
 `;
+
 const LeftImage = styled.img`
   position: absolute;
-  top: 50%;
-  left: 18%;
+  top: 42%;
+  left: 5%;
   width: 200px;
   height: 200px;
   background-color: #000000;
   border: none;
   border-radius: 16px;
 `;
-const FifthTitle = styled.div`
+
+const FirstBoxTitle = styled.div`
   font-family: "WAGURITTF";
   font-weight: normal;
   font-style: normal;
   font-size: 50px;
   position: absolute;
-  top: 31%;
-  left: 18%;
+  top: 23%;
+  left: 5%;
 `;
+
 const TextContainer = styled.div`
   position: absolute;
-  top: 51%;
-  left: 31%;
+  top: 42%;
+  left: 23%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -67,10 +70,11 @@ const Row = styled.div`
   width: 100%;
   margin-bottom: 20px;
 `;
+
 const SemiRow = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: flex-start; /* 수정된 부분 */
+  align-items: flex-start;
   width: 100%;
   margin-bottom: 10px;
 `;
@@ -81,6 +85,7 @@ const ThirdTitleColor = styled.span`
   color: #2c3932;
   margin-right: 20px;
 `;
+
 const ThirdSubText = styled.div`
   flex: 1;
   text-align: left;
@@ -89,6 +94,7 @@ const ThirdSubText = styled.div`
   color: rgba(20, 20, 20, 0.6);
   letter-spacing: 3%;
 `;
+
 const BottomSubText = styled.div`
   flex: 1;
   text-align: left;
@@ -99,13 +105,13 @@ const BottomSubText = styled.div`
   word-spacing: 15px;
 `;
 
-function FifthHomeBox() {
+function FirstMyspotBox() {
   return (
-    <FifthContainer>
-      <TitleFont>나의 선택을 중심으로 네이버가 추천 스팟을 알려줘요</TitleFont>
-      <FifthImg src={longticket} alt="Background" />
+    <FirstContain>
+      <TopText>2024.08.01 19:21 생성</TopText>
+      <FirstImg src={longticket} alt="Background" />
       <LeftImage alt="Left Image" />
-      <FifthTitle>나의 서울 경복궁역 산책</FifthTitle>
+      <FirstBoxTitle>나의 서울 경복궁역 산책</FirstBoxTitle>
       <TextContainer>
         <Row>
           <SemiRow>
@@ -117,7 +123,7 @@ function FifthHomeBox() {
             <ThirdTitleColor> 저녁</ThirdTitleColor>
           </SemiRow>
           <SemiRow>
-            <ThirdSubText>{/*레이아웃 용 요소*/}</ThirdSubText>
+            <ThirdSubText>{/* 레이아웃 용 요소 */}</ThirdSubText>
           </SemiRow>
         </Row>
         <Row>
@@ -141,8 +147,8 @@ function FifthHomeBox() {
           </BottomSubText>
         </SemiRow>
       </TextContainer>
-    </FifthContainer>
+    </FirstContain>
   );
 }
 
-export default FifthHomeBox;
+export default FirstMyspotBox;

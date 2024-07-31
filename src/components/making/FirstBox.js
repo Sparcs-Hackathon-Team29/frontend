@@ -23,12 +23,21 @@ const FirstSubTitle = styled.div`
   color: rgba(40, 40, 40, 0.5);
   font-size: 32px;
 `;
+const HighlightedText = styled.span`
+  font-size: 96px;
+  font-weight: 400;
+  letter-spacing: 4%;
+  color: ${(props) => props.color};
+`;
 
 function FirstBox() {
   return (
     <FirstContain>
       <FirstMainTitle>7개의 질문을 통해</FirstMainTitle>
-      <FirstMainTitle>추천스케줄을 알려드릴게요</FirstMainTitle>
+      <FirstMainTitle>
+        <HighlightedText color="#7135F0">추천 스팟</HighlightedText>을
+        알려드릴게요
+      </FirstMainTitle>
       <FirstSubTitle>스크롤을 내리며 모든 항목에 답변을 해주세요</FirstSubTitle>
     </FirstContain>
   );

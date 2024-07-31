@@ -83,7 +83,7 @@ function EighthBox({ setEighthfeedback }) {
   return (
     <EighthContainer>
       <EighthTitle>마지막으로 고려할 사항이 있을까요?</EighthTitle>
-      <EighthSubTitle>여행지 선택에 영향을 주는 사항들이에요</EighthSubTitle>
+      <EighthSubTitle>스팟 선택에 영향을 주는 사항들이에요</EighthSubTitle>
       <EighthButtonBox>
         <EighthButton
           isSelected={selectedButtons.includes("반려동물")}

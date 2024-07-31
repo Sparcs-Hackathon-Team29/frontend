@@ -69,7 +69,7 @@ const Home = () => {
         <SecondHomeBox />
         <ThirdContain>
           <TirdTitleFont>
-            내 상황에 맞는 행선지를 AI가 골라준다면 어떨까요?
+            내 상황에 맞는 장소를 AI가 골라준다면 어떨까요?
           </TirdTitleFont>
         </ThirdContain>
         <ForthHomeBox />

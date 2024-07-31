@@ -5,6 +5,8 @@ import SignUp from "./pages/Signup";
 import { MyMap } from "./pages/MyMap";
 import Making from "./pages/Making";
 import Loading from "./pages/Loading";
+import Mymade from "./pages/Myspot";
+
 import Navbar from "./components/toolbar/Navbar";
 
 import { Routes, Route, useLocation } from "react-router-dom";
@@ -27,6 +29,7 @@ function App() {
           <Route path="/map" element={<MyMap />} />
           <Route path="/make" element={<Making />} />
           <Route path="loading" element={<Loading />} />
+          <Route path="/myspot" element={<Mymade />} />
         </Routes>
       </NavermapsProvider>
     </div>

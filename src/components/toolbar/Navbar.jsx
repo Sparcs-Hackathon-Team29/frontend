@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
+
 import rabbit_log2 from "../../img/rabbit_log2.png";
+import rabbit_log3 from "../../img/rabbit_log3.png";
 
 const Container = styled.div`
   position: relative;
@@ -77,8 +79,17 @@ const Navbar = () => {
   const getButtonColor = (path) => {
     if (location.pathname === path) {
       return path === "/" ? "rgba(221,226,224,1)" : "#3B3B3B";
+    } else if (
+      location.pathname === "/myspot" ||
+      location.pathname === "/make"
+    ) {
+      return path === "/make" ? "#3B3B3B" : "rgba(221,226,224,0.6)";
     }
     return "rgba(221,226,224,0.6)";
+  };
+
+  const getImageSrc = () => {
+    return location.pathname === "/" ? rabbit_log2 : rabbit_log3;
   };
 
   const goToLogin = () => {
@@ -97,14 +108,14 @@ const Navbar = () => {
   return (
     <div>
       <Container>
-        <Img src={rabbit_log2} alt="Rabbit Logo" />
+        <Img src={getImageSrc()} alt="Rabbit Logo" onClick={goToHome} />
 
         <Box />
         <Button color={getButtonColor("/")} onClick={goToHome}>
           Home
         </Button>
         <Button color={getButtonColor("/make")} onClick={goToMaking}>
-          AI 스케줄
+          나의 스팟
         </Button>
         <Button color={getButtonColor("/map")} onClick={goToMyMap}>
           AI 추천

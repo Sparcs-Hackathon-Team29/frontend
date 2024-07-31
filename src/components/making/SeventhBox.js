@@ -93,7 +93,7 @@ function SeventhBox({ setSeventhfeedback }) {
 
   return (
     <SeventhContainer>
-      <SeventhTitle>여행 시간은 어떻게 되나요?</SeventhTitle>
+      <SeventhTitle>원하시는 시간대가 있나요?</SeventhTitle>
       <SeventhSubTitle>
         어느 시간대에 가기를 희망하시나요? 원하는 시간대를 전부 눌러주세요
       </SeventhSubTitle>
@@ -154,7 +154,7 @@ function SeventhBox({ setSeventhfeedback }) {
           <SeventhButtonText
             isSelected={selectedSeventhButtons.includes("22:00 이후")}
           >
-            야간
+            심야
           </SeventhButtonText>
           <SeventhButtonSubText
             isSelected={selectedSeventhButtons.includes("22:00 이후")}

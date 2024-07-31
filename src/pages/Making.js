@@ -15,28 +15,7 @@ const Container = styled.div`
   height: 100vh;
   position: relative;
 `;
-const LineContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 100vh;
-  z-index: 0;
-  gap: 16px;
-`;
 
-const Line = styled.div`
-  width: 206px;
-  height: 100vh;
-  background-color: rgba(255, 0, 0, 0.1);
-
-  &:last-child {
-    margin-right: 0;
-  }
-`;
 const ScroleContainer = styled.div`
   display: block;
   position: absolute;
@@ -80,14 +59,6 @@ function Making() {
   //버튼 클릭마다 재 랜더링 되는거 한번 고민해보아야함.
   return (
     <div>
-      <LineContainer>
-        <Line />
-        <Line />
-        <Line />
-        <Line />
-        <Line />
-        <Line />
-      </LineContainer>
       <GlobalStyle />
       <Container>
         <FirstBox />

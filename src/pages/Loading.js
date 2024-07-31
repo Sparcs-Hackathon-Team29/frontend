@@ -43,8 +43,8 @@ function Loading() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/");
-    }, 30000); // 30초 후에 "/" 페이지로 이동
+      navigate("/myspot");
+    }, 1000); // 30초 후에 "/" 페이지로 이동
 
     return () => clearTimeout(timer); // 컴포넌트 언마운트 시 타이머 정리
   }, [navigate]);
@@ -55,7 +55,7 @@ function Loading() {
       <Message>
         <HighlightedText color="#20FB7C">트레빗</HighlightedText>
         <HighlightedText>
-          이 <HighlightedText color="#7135F0">여행 스케줄</HighlightedText>을
+          이 <HighlightedText color="#7135F0">추천 스팟</HighlightedText>을
         </HighlightedText>
       </Message>
       <Message>생성 중이에요</Message>

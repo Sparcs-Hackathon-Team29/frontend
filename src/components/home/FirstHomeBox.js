@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { useNavigate } from "react-router-dom";
 const FirstContain = styled.div`
   display: block;
   position: absolute;
@@ -33,21 +33,26 @@ const Button = styled.button`
   font-weight: 700;
   color: ${(props) => props.color || "#F0F0F0"};
   background-color: ${(props) => props.backgroundColor || "#F0F0F0"};
+  cursor: pointer;
 `;
 
 function FirstHomeBox() {
+  const navigate = useNavigate();
+  const goToMaking = () => {
+    navigate("/make");
+  };
   return (
     <FirstContain>
       <FirstContainBot>
-        <Button color="#ffffff" backgroundColor="#000000">
-          AI로 자동 생성
+        <Button color="#ffffff" backgroundColor="#000000" onClick={goToMaking}>
+          나의 스팟 만들기
         </Button>
         <Button
           color="#000000"
           backgroundColor="#FBFBFB"
           border="1px solid rgba(40,40,40,0.5)"
         >
-          AI 행선지 추천
+          AI 스팟 추천
         </Button>
       </FirstContainBot>
     </FirstContain>
