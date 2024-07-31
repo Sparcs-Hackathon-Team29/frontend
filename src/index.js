@@ -2,8 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-
-import { Provider } from "react-redux";
+import GlobalStyle from "./GlobalStyle";
 import { AuthProvider } from "./AuthContext";
 import { BrowserRouter } from "react-router-dom";
 
@@ -13,6 +12,7 @@ root.render(
   <React.StrictMode>
     <AuthProvider>
       <BrowserRouter>
+        <GlobalStyle />
         <App />
       </BrowserRouter>
     </AuthProvider>

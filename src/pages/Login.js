@@ -105,7 +105,7 @@ function Login() {
         formData.append("password", password);
 
         const response = await axios.post(
-          `https://a023-106-101-130-185.ngrok-free.app/login`,
+          `https://1bc0-106-101-130-236.ngrok-free.app/login`,
           formData
         );
         console.log(response);
@@ -122,7 +122,7 @@ function Login() {
         //GET 요청 보내기
         try {
           const adminResponse = await axios.post(
-            "https://a023-106-101-130-185.ngrok-free.app/admin",
+            "https://1bc0-106-101-130-236.ngrok-free.app/admin",
             {}, // 빈 객체를 요청 본문으로 사용
             {
               headers: {

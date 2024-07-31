@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import rabbit_log2 from "../../img/rabbit_log2.png";
 
 const Container = styled.div`
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -32,13 +32,14 @@ const ButtonBase = styled.button`
 
 const Button = styled(ButtonBase)`
   font-size: 24px;
-  color: ${(props) => props.color || "#DDE2E0"};
+  color: ${(props) => props.color};
 `;
 
 const LoginButton = styled(ButtonBase)`
   width: 122px;
   height: 54px;
   font-size: 24px;
+  font-weight: 700;
   background-color: #20fb7c;
   border: none;
   border-radius: 8px;
@@ -62,9 +63,7 @@ const Img = styled.img`
   height: 64px;
   border: none;
 `;
-/*  display: flex;
-  flex-grow: 1;
-  justify-content: center; */
+
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -73,6 +72,14 @@ const ButtonWrapper = styled.div`
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const getButtonColor = (path) => {
+    if (location.pathname === path) {
+      return path === "/" ? "rgba(221,226,224,1)" : "#3B3B3B";
+    }
+    return "rgba(221,226,224,0.6)";
+  };
 
   const goToLogin = () => {
     navigate("/login");
@@ -83,17 +90,25 @@ const Navbar = () => {
   const goToMyMap = () => {
     navigate("/map");
   };
+  const goToMaking = () => {
+    navigate("/make");
+  };
+
   return (
     <div>
       <Container>
         <Img src={rabbit_log2} alt="Rabbit Logo" />
 
         <Box />
-        <Button color={"#FBFBFB"} onClick={goToHome}>
+        <Button color={getButtonColor("/")} onClick={goToHome}>
           Home
         </Button>
-        <Button>AI 스케줄</Button>
-        <Button onClick={goToMyMap}>AI 추천</Button>
+        <Button color={getButtonColor("/make")} onClick={goToMaking}>
+          AI 스케줄
+        </Button>
+        <Button color={getButtonColor("/map")} onClick={goToMyMap}>
+          AI 추천
+        </Button>
         <ButtonWrapper>
           <LoginButton onClick={goToLogin}>로그인</LoginButton>
         </ButtonWrapper>

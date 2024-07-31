@@ -88,7 +88,7 @@ export default function Signup() {
 
         // POST 요청 보내기
         const response = await axios.post(
-          "https://a023-106-101-130-185.ngrok-free.app/join",
+          "https://1bc0-106-101-130-236.ngrok-free.app/join",
           formData,
           {
             headers: {
@@ -97,15 +97,14 @@ export default function Signup() {
           }
         );
 
-        console.log(response);
+        console.log("기본응답:", response);
         setUserId(userId);
         alert("회원가입 성공~");
         setTimeout(() => {
           navigate("/login"); // /login로 이동
         }, 1500);
       } catch (error) {
-        console.error(error);
-        console.log(userId, password);
+        console.error("에러응답:", error);
         alert("회원가입에 실패했습니다.");
       }
     }
